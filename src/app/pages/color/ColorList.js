@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import ColorItem from './ColorItem';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,8 @@ import { FuseAnimate } from '@fuse';
 
 const ColorList = (props) => {
   const dispatch = useDispatch();
-
+  let textInput = useRef();
+  
   const colors = useSelector(({ color }) => color.entities);
   const loading = useSelector(({ color }) => color.loading);
 
@@ -39,6 +40,13 @@ const ColorList = (props) => {
     }
   };
 
+  const _handleKeyDown = (e, color) => {
+    if (e.key === 'Enter') {
+      _onSelect(color);
+      textInput.current.focus();
+    }
+  };
+
   return (
     <div className='row'>
       <FuseAnimate animation='transition.fadeIn' duration='1000'>
@@ -57,11 +65,13 @@ const ColorList = (props) => {
         <FuseAnimate animation='transition.fadeIn' duration='1000'>
           <div className='col-sm-6 col-md-3 col-lg-3 col-xl-3 mx-auto mb-5'>
             <input
+              ref={textInput}
               className='form-control text-center'
               type='text'
               placeholder='search'
               onChange={_onTextChange}
               value={text}
+              tabIndex={1}
             />
           </div>
         </FuseAnimate>
@@ -78,8 +88,9 @@ const ColorList = (props) => {
                 <div
                   className='col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2'
                   onClick={() => _onSelect(color)}
+                  onKeyDown={(e) => _handleKeyDown(e, color)}
                 >
-                  <ColorItem color={color} bold={text} />
+                  <ColorItem color={color} bold={text} index={index} />
                 </div>
               </FuseAnimate>
             ))
