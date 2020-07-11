@@ -22,7 +22,15 @@ const ColorList = (props) => {
   const _onTextChange = (event) => {
     const searchKey = event.target.value;
     setText(searchKey);
+    updateColors(searchKey);
+  };
 
+  const _onSelect = (color) => {
+    setText(color);
+    updateColors(color);
+  };
+
+  const updateColors = (searchKey) => {
     if (searchKey.trim().length) {
       const updatedColors = colors.filter((c) => c.includes(searchKey));
       setFilteredColors(updatedColors);
@@ -67,7 +75,10 @@ const ColorList = (props) => {
                 animation='transition.slideUpIn'
                 delay={index * 10}
               >
-                <div className='col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2'>
+                <div
+                  className='col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2'
+                  onClick={() => _onSelect(color)}
+                >
                   <ColorItem color={color} bold={text} />
                 </div>
               </FuseAnimate>
