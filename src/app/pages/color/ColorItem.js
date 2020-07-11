@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Highlighter from 'react-highlight-words';
 
-import _ from 'lodash';
-
 const ColorItem = (props) => {
   const { color, bold } = props;
 

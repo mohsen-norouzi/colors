@@ -73,7 +73,7 @@ const ColorList = (props) => {
               </FuseAnimate>
             ))
           : !loading &&
-            (text.trim() != '' ? (
+            (text.trim() !== '' ? (
               <FuseAnimate animation='transition.fadeIn'>
                 <p>no colors found</p>
               </FuseAnimate>
