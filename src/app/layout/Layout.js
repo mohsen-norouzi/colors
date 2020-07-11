@@ -5,7 +5,7 @@ import ColorList from 'app/pages/color/ColorList';
 
 const Layout = () => {
   return (
-    <div className='container py-5 h-100 d-flex align-items-center'>
+    <div className='container py-5'>
       {/* <Header /> */}
       <ColorList />
     </div>
