@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Highlighter from 'react-highlight-words';
 
 const ColorItem = (props) => {
-  const { color, bold, index } = props;
+  const { color, bold, index, onClick } = props;
 
   return (
-    <div className='color-item d-flex' tabIndex={index + 2}>
+    <div className='color-item d-flex' tabIndex={index + 2} onClick={onClick}>
       <div className='color-box' style={{ background: color }}></div>
       <small className='color-title'>
         <Highlighter

@@ -5,6 +5,7 @@
 body,
 html {
   overflow-y: overlay;
+  height: 100%;
 }
 
 ::-webkit-scrollbar {

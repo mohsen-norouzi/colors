@@ -8,6 +8,7 @@ import { FuseAnimate } from '@fuse';
 
 const ColorList = (props) => {
   const dispatch = useDispatch();
+
   let textInput = useRef();
 
   const colors = useSelector(({ color }) => color.entities);
@@ -87,10 +88,14 @@ const ColorList = (props) => {
               >
                 <div
                   className='col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2'
-                  onClick={() => _onSelect(color)}
                   onKeyDown={(e) => _handleKeyDown(e, color)}
                 >
-                  <ColorItem color={color} bold={text} index={index} />
+                  <ColorItem
+                    color={color}
+                    bold={text}
+                    index={index}
+                    onClick={() => _onSelect(color)}
+                  />
                 </div>
               </FuseAnimate>
             ))
