@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from 'app/store/actions';
 import { FuseAnimate } from '@fuse';
 
-import OutsideClickHandler from 'react-outside-click-handler';
-
 const ColorList = (props) => {
   const dispatch = useDispatch();
 
@@ -26,17 +24,20 @@ const ColorList = (props) => {
   const _onTextChange = (event) => {
     const searchKey = event.target.value;
     setText(searchKey);
-    updateColors(searchKey);
+    updateColors(searchKey, false);
   };
 
   const _onSelect = (color) => {
     setText(color);
-    updateColors(color);
+    updateColors(color, true);
   };
 
-  const updateColors = (searchKey) => {
+  const updateColors = (searchKey, exact) => {
     if (searchKey.trim().length) {
-      const updatedColors = colors.filter((c) => c.includes(searchKey));
+      const updatedColors = exact
+        ? colors.filter((c) => c === searchKey)
+        : colors.filter((c) => c.includes(searchKey));
+
       setFilteredColors(updatedColors);
     } else {
       setFilteredColors([]);
@@ -48,11 +49,6 @@ const ColorList = (props) => {
       _onSelect(color);
       textInput.current.focus();
     }
-  };
-
-  const _handleClickOutside = () => {
-    setText('');
-    setFilteredColors([]);
   };
 
   return (
@@ -72,17 +68,15 @@ const ColorList = (props) => {
       ) : (
         <FuseAnimate animation='transition.fadeIn' duration='1000'>
           <div className='col-sm-6 col-md-3 col-lg-3 col-xl-3 mx-auto mb-5'>
-            <OutsideClickHandler onOutsideClick={_handleClickOutside}>
-              <input
-                ref={textInput}
-                className='form-control text-center'
-                type='text'
-                placeholder='search'
-                onChange={_onTextChange}
-                value={text}
-                tabIndex={1}
-              />
-            </OutsideClickHandler>
+            <input
+              ref={textInput}
+              className='form-control text-center'
+              type='text'
+              placeholder='search'
+              onChange={_onTextChange}
+              value={text}
+              tabIndex={1}
+            />
           </div>
         </FuseAnimate>
       )}
@@ -99,14 +93,12 @@ const ColorList = (props) => {
                   className='col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2'
                   onKeyDown={(e) => _handleKeyDown(e, color)}
                 >
-                  <OutsideClickHandler onOutsideClick={_handleClickOutside}>
-                    <ColorItem
-                      color={color}
-                      bold={text}
-                      index={index}
-                      onClick={() => _onSelect(color)}
-                    />
-                  </OutsideClickHandler>
+                  <ColorItem
+                    color={color}
+                    bold={text}
+                    index={index}
+                    onClick={() => _onSelect(color)}
+                  />
                 </div>
               </FuseAnimate>
             ))
