@@ -34,7 +34,7 @@ const ColorList = (props) => {
 
       {colors.map((color, index) => (
         <FuseAnimate animation='transition.slideRightIn' delay={index * 10}>
-          <div className='col-2 p-2' key={index}>
+          <div className='col-sm-6 col-md-4 col-lg3 col-xl-2 p-2' key={index}>
             <ColorItem color={color} />
           </div>
         </FuseAnimate>
