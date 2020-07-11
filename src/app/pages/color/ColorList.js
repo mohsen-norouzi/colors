@@ -9,7 +9,7 @@ import { FuseAnimate } from '@fuse';
 const ColorList = (props) => {
   const dispatch = useDispatch();
   let textInput = useRef();
-  
+
   const colors = useSelector(({ color }) => color.entities);
   const loading = useSelector(({ color }) => color.loading);
 
@@ -94,16 +94,15 @@ const ColorList = (props) => {
                 </div>
               </FuseAnimate>
             ))
-          : !loading &&
-            (text.trim() !== '' ? (
+          : !loading && (
               <FuseAnimate animation='transition.fadeIn'>
-                <p>no colors found</p>
+                <p>
+                  {text.trim() !== ''
+                    ? 'color not found : ('
+                    : 'type to search in colors'}
+                </p>
               </FuseAnimate>
-            ) : (
-              <FuseAnimate animation='transition.fadeIn'>
-                <p>type to search colors</p>
-              </FuseAnimate>
-            ))}
+            )}
       </div>
     </div>
   );

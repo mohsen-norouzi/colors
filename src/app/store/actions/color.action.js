@@ -17,6 +17,6 @@ export const getColors = () => {
         type: GET_COLORS_SUCCESS,
         entities: COLORS,
       });
-    }, 1000);
+    }, 2000);
   };
 };
