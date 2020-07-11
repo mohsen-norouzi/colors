@@ -1,9 +1,13 @@
 import React from 'react';
+import _ from 'lodash';
 
 const ColorItem = (props) => {
+  const { color } = props;
+
   return (
-    <div>
-      <h3>Color Item</h3>
+    <div className='color-item d-flex'>
+      <div className='color-box' style={{ background: color }}></div>
+      <small class='color-title'>{_.startCase(color)}</small>
     </div>
   );
 };
