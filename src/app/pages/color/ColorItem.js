@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import _ from 'lodash';
 
 const ColorItem = (props) => {
@@ -10,6 +12,10 @@ const ColorItem = (props) => {
       <small className='color-title'>{_.startCase(color)}</small>
     </div>
   );
+};
+
+ColorItem.propTypes = {
+  color: PropTypes.string.isRequired,
 };
 
 export default ColorItem;
