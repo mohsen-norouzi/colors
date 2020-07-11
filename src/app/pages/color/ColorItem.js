@@ -7,7 +7,7 @@ const ColorItem = (props) => {
   return (
     <div className='color-item d-flex'>
       <div className='color-box' style={{ background: color }}></div>
-      <small class='color-title'>{_.startCase(color)}</small>
+      <small className='color-title'>{_.startCase(color)}</small>
     </div>
   );
 };
